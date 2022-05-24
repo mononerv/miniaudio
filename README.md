@@ -11,7 +11,7 @@ Use either `build.sh` or `cmake` to compile the static library.
 Example `cmake` with `ninja`:
 
 ```
-cmake -S . -bbuild -DCMAKE_BUILD_TYPE=Release -GNinja
+cmake -S . -Bbuild -DCMAKE_BUILD_TYPE=Release -GNinja
 ```
 
 Build using ninja
@@ -25,7 +25,7 @@ ninja -C build
 Example using just `cmake`.
 
 ```
-cmake -S . -bbuild -DCMAKE_BUILD_TYPE=Release
+cmake -S . -Bbuild -DCMAKE_BUILD_TYPE=Release
 ```
 
 ```

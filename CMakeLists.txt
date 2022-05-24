@@ -5,6 +5,25 @@ set(CMAKE_C_STANDARD 17)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
 
+# warnings and errors
+if (NOT MSVC)
+    string(JOIN " " CMAKE_C_FLAGS
+        "-Wall"
+        "-Wextra"
+        "-Wpedantic"
+        "-Werror"
+
+        "-Wno-deprecated-declarations"
+        "-Wno-unused-but-set-variable"
+        "-Wno-unused-parameter"
+    )
+else()
+    string(JOIN " " CMAKE_C_FLAGS
+        "/W4"
+        "/WX"
+    )
+endif()
+
 include_directories(${PROJECT_SOURCE_DIR})
 add_library(${PROJECT_NAME} STATIC
     miniaudio.c
