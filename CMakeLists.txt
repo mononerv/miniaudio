@@ -26,6 +26,13 @@ else()
     )
     # stdalign.h not found when in C11+
     set(CMAKE_C_STANDARD 99)
+    # output to just `lib` directory instead of `lib/Release` or `lib/Debug` on msvc
+    foreach( OUTPUTCONFIG ${CMAKE_CONFIGURATION_TYPES} )
+        string(TOUPPER ${OUTPUTCONFIG} OUTPUTCONFIG)
+        set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_${OUTPUTCONFIG} ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
+        set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_${OUTPUTCONFIG} ${CMAKE_ARCHIVE_OUTPUT_DIRECTORY})
+        set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_${OUTPUTCONFIG} ${CMAKE_LIBRARY_OUTPUT_DIRECTORY})
+    endforeach( OUTPUTCONFIG CMAKE_CONFIGURATION_TYPES )
 endif()
 
 include_directories(${PROJECT_SOURCE_DIR})
