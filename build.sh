@@ -1,13 +1,13 @@
 #!/usr/bin/env sh
 set -e
 
-in=miniaudio.c
+in=miniaudio.cpp
 out="${in%.*}"
 
-bin=bin
+bin=build
 obj=obj
 
-c_version=-std=c17
+cpp_version=-std=c++17
 warnings="
  -Wall
  -Wextra
@@ -17,11 +17,11 @@ warnings="
 "
 includes="-I."
 other="-O3"
-compile_flags="${c_version} ${warnings} ${includes} ${other}"
+compile_flags="${cpp_version} ${warnings} ${includes} ${other}"
 
 mkdir -p $bin
 mkdir -p $obj
 
-cc $compile_flags -c $in -o $obj/${out}
+c++ $compile_flags -c $in -o $obj/${out}
 ar rcs $bin/lib${out}.a $obj/${out}
 

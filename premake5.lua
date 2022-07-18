@@ -1,22 +1,16 @@
-workspace 'miniaudio'
-  configurations {
-    'debug',
-    'release'
-  }
-
 MINIAUDIO_INCLUDE = path.getabsolute('.')
 
 project 'miniaudio'
   kind 'StaticLib'
-  language 'C'
+  language 'C++'
   staticruntime 'On'
 
-  targetdir('%{wks.location}/lib')
+  targetdir('%{wks.location}/bin/%{cfg.buildcfg}/%{prj.name}')
   objdir('%{wks.location}/obj/%{cfg.buildcfg}/%{prj.name}')
 
   files {
     'miniaudio.h',
-    'miniaudio.c'
+    'miniaudio.cpp'
   }
 
   includedirs {
@@ -25,7 +19,7 @@ project 'miniaudio'
 
   filter {'not system:windows'}
     buildoptions {
-      '-std=c17',
+      '-std=c++17',
       '-Wpedantic',
       '-Wall',
       '-Wextra',
@@ -45,7 +39,6 @@ project 'miniaudio'
   filter 'system:windows'
     system 'windows'
     buildoptions {
-      '/std=c99',
       '/W4',
       '/WX',
       '/wd4100',
