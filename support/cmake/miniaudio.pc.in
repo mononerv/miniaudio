@@ -1,0 +1,10 @@
+prefix=@CMAKE_INSTALL_PREFIX@
+exec_prefix=@CMAKE_INSTALL_PREFIX@
+libdir=@libdir_for_pc_file@
+includedir=@includedir_for_pc_file@
+
+Name: miniaudio
+Description: miniaudio single-file public domain libraries for C/C++
+Version: @miniaudio_VERSION@
+Libs: -L${libdir} -l@miniaudio_LIB_NAME@
+Cflags: -I${includedir}
